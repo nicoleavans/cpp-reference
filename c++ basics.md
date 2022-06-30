@@ -219,3 +219,178 @@ int main(){
     return 0;
 }
 ```
+## arrays
+Arrays are useful for containing objects you need to access by reference:
+```
+#include <string>
+
+int main(){
+    std::string colors[4] = { "Red", "Blue", "Yellow", "Green" };
+	int numSeq[5] = { 10, 20, 30, 40, 50 };
+    
+    return 0;
+}
+```
+Looping through an array is easy with a for loop:
+```
+#include <iostream>
+#include <string>
+
+int main(){
+    std::string colors[4] = { "Red", "Blue", "Yellow", "Green" };
+	//i value must be the size of the array
+	for (int i = 0; i < 4; i++) {
+		std::cout << colors[i] << "\n";
+	}
+    
+    return 0;
+}
+```
+To get the number of values in an array:
+```
+#include <iostream>
+
+int main(){
+    int numSeq[5] = { 10, 20, 30, 40, 50 };
+    //sizeof() returns 20, the number of bytes contained in the array
+	//there are 5 ints, of 4 bytes each
+	std::cout << sizeof(numSeq) << "\n";
+	//to get the # of values in an array divide size of array by size of data type
+	int getArrayLength = sizeof(numSeq) / sizeof(int);
+	std::cout << getArrayLength << "\n";
+	return 0;
+}
+```
+Multi-dimensional arrays are also possible:
+```
+#include <iostream>
+#include <string>
+
+int main(){
+    //type array2D[x][y] x = # of arrays y = # of elements in arrays
+	std::string letters[2][4] = {
+		{"A", "B", "C", "D"},
+		{"E", "F", "G", "H"}
+	};
+	std::cout << letters[0][2] << "\n"; //should output C
+	return 0;
+}
+```
+Another example, with a demonstration of looping through the array:
+```
+#include <iostream>
+
+int main(){
+    //type array3D[x][y][z] x = # of top level arrays 
+	//y = # of arrays within top level arrays
+	//z = number of elements within each array
+	int numbers[2][2][2] = {
+		{
+			{1,2},
+			{3,4}
+		},
+		{
+			{5,6},
+			{7,8}
+		}
+	};
+	//to loop through a multi-dimensional array 1 loop is needed per array dimension
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++) {
+			for (int k = 0; k < 2; k++) {
+				std::cout << numbers[i][j][k] << "\n";
+			}
+		}
+	}
+	return 0;
+}
+```
+Multi-dimensional arrays are also useful for representing grids, like in the classic example Battleship:
+```
+#include <iostream>
+
+int main(){
+    //multidimensional arrays are good for representing grids
+	//battleship example
+	bool ships[4][4] = {
+		{0, 1, 1, 0},
+		{0, 0, 0, 0},
+		{0, 0, 1, 0},
+		{0, 0, 1, 0}
+	};
+	int hits = 0;
+	int numTurns = 0;
+	while (hits < 4) { //less than 4 bc there are 4 ships
+		int row, column;
+		std::cout << "Selecting Coordinates\n";
+		std::cout << "Choose a row number between 0 and 3: ";
+		std::cin >> row;
+		std::cout << "Chose a column number between 0 and 3: ";
+		std::cin >> column;
+		//check if ship exists
+		if (ships[row][column]) {
+			ships[row][column] = 0; //if hit, remove it
+			hits++; // increase hits counter
+			std::cout << "Hit!\n";
+			std::cout << (4 - hits) << " left.\n"; //# of ships - current hits 
+		}
+		else {
+			std::cout << "Miss.\n";
+		}
+		numTurns++; //count how many turns taken
+	}
+	std::cout << "Victory!\n" << "You won in " << numTurns << " turns.";
+	
+	return 0;
+}
+```
+## structures
+Structures group several related variables into one place. Unlike an array, it can contain different data types:
+```
+#include <iostream>
+#include <string>
+
+int main(){
+    struct { //declaration
+		int myNum; //member
+		std::string myString;
+	} myStructure; //structure variable, multiple can be made with , separating
+	//to access members of a structure use the dot (.) syntax
+	myStructure.myNum = 1; //assign values
+	myStructure.myString = "Hello World!";
+	std::cout << myStructure.myNum << "\n"; //print
+	std::cout << myStructure.myString << "\n";
+	
+	return 0;
+}
+```
+Named structures can function as data types:
+```
+#include <iostream>
+#include <string>
+
+int main(){
+    struct myBook{
+		std::string title;
+		std::string author;
+		int year;
+	};
+	
+	myBook myBook1;
+	myBook myBook2;
+
+	myBook1.title = "Pride & Prejudice";
+	myBook1.author = "Jane Austen";
+	myBook1.year = 1813;
+
+	myBook2.title = "The Idiot";
+	myBook2.author = "Fyodor Dostoevsky";
+	myBook2.year = 1869;
+
+	std::cout << myBook1.title << '\t' << myBook1.author << "\t\t" << myBook1.year << '\n';
+	std::cout << myBook2.title << "\t\t" << myBook2.author << '\t' << myBook2.year << '\n';
+
+	
+	return 0;
+}
+```
