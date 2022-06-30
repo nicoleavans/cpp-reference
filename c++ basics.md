@@ -394,3 +394,54 @@ int main(){
 	return 0;
 }
 ```
+## references and pointers
+References and pointers give you the ability to manipulate data in the computers memory which can reduce code and improve performance, a main distinction between c++ and other languages, like java.
+
+A reference variable is a reference to an existing variable created with the & operator:
+```
+#include <iostream>
+#include <string>
+
+int main()
+{
+    std::string food = "Macaroni";
+	std::string& meal = food; //putting & in front of a variable denotes address of
+	std::cout << food << "\n"; //should output macaroni
+	std::cout << meal << "\n"; //should output macaroni
+
+    return 0;
+}
+```
+The & operator can also be used to get the memory address of a variable. A pointer is a variable that stores the memory address as its value:
+```
+#include <iostream>
+#include <string>
+
+int main()
+{
+    std::string food = "Macaroni";
+    std::string* ptr = &food; //created with * operator, stores address
+	std::cout << food << "\n"; //output value
+	std::cout << &food << "\n"; //outputs mem address 0x78fde0
+	std::cout << ptr << "\n"; //output mem address w/ pointer
+
+    return 0;
+}
+```
+Pointers can also be used to get and change the value of the variable:
+```
+#include <iostream>
+#include <string>
+
+int main()
+{
+    std::string food = "Macaroni";
+    std::string* ptr = &food; //created with * operator, stores address
+	std::cout << *ptr << "\n"; // dereference : output value from pointer
+	*ptr = "Hamburger"; //change the value of the pointer
+	std::cout << *ptr << "\n"; //output new value of pointer
+	std::cout << food << "\n"; //output new value of food variable
+
+    return 0;
+}
+```
