@@ -405,9 +405,9 @@ A reference variable is a reference to an existing variable created with the & o
 int main()
 {
     std::string food = "Macaroni";
-	std::string& meal = food; //putting & in front of a variable denotes address of
-	std::cout << food << "\n"; //should output macaroni
-	std::cout << meal << "\n"; //should output macaroni
+    std::string& meal = food; //putting & in front of a variable denotes address of
+    std::cout << food << "\n"; //should output macaroni
+    std::cout << meal << "\n"; //should output macaroni
 
     return 0;
 }
@@ -421,9 +421,9 @@ int main()
 {
     std::string food = "Macaroni";
     std::string* ptr = &food; //created with * operator, stores address
-	std::cout << food << "\n"; //output value
-	std::cout << &food << "\n"; //outputs mem address 0x78fde0
-	std::cout << ptr << "\n"; //output mem address w/ pointer
+    std::cout << food << "\n"; //output value
+    std::cout << &food << "\n"; //outputs mem address 0x78fde0
+    std::cout << ptr << "\n"; //output mem address w/ pointer
 
     return 0;
 }
@@ -437,11 +437,493 @@ int main()
 {
     std::string food = "Macaroni";
     std::string* ptr = &food; //created with * operator, stores address
-	std::cout << *ptr << "\n"; // dereference : output value from pointer
-	*ptr = "Hamburger"; //change the value of the pointer
-	std::cout << *ptr << "\n"; //output new value of pointer
-	std::cout << food << "\n"; //output new value of food variable
+    std::cout << *ptr << "\n"; // dereference : output value from pointer
+    *ptr = "Hamburger"; //change the value of the pointer
+    std::cout << *ptr << "\n"; //output new value of pointer
+    std::cout << food << "\n"; //output new value of food variable
 
     return 0;
+}
+```
+## function basics
+Basic functions follow take this format:
+```
+#include <iostream>
+
+void myFunction() { //declaration
+	std::cout << "I just got executed!\n"; //definition
+}
+
+int main()
+{
+    myFunction(); //can be called multiple times
+    return 0;
+}
+```
+Functions also frequently function by taking parameters. A function can take one or more parameters, and those parameters may also have a default value. Frequently, function declarations are made above the main class, with the definitions following after. Here are a few examples:
+```
+#include <iostream>
+
+void myCountry(std::string country = "Sweden"); //default param is part of declaration
+int mySum(int x, int y);
+void swapNums(int& x, int& y); //you can pass a reference to a function
+void arrayFunction(int myNums[5]);
+
+int main()
+{
+    myCountry(); //prints Sweden
+    myCountry("USA"); //prints USA
+    std::cout << mySum(2, 3) << "\n"; //should return 5
+    int z = mySum(4, 6); // functions can create variables
+    std::cout << z << "\n";
+    int num1 = 10;
+    int num2 = 20;
+    std::cout << "Before swap: " << num1 << " " << num2 << "\n";
+    swapNums(num1, num2);
+    std::cout << "After swap: " << num1 << " " << num2 << "\n";
+    int myNums[5] = { 1,2,3,4,5 };
+    arrayFunction(myNums);
+    int int1 = 2;
+    int int2 = 7;
+    return 0;
+}
+
+void myCountry(std::string country) { //default param defined above
+	std::cout << country << '\n';
+}
+//if you want it to return a value, data type can be used instead of void
+int mySum(int x, int y) {
+	return x + y; //use the return keyword inside the function
+}
+void swapNums(int& x, int& y) { //useful for changing the value of arguments
+	int z = x;
+	x = y;
+	y = z;
+}
+void arrayFunction(int myNums[5]) {
+	for (int i = 0; i < 5; i++) {
+		std::cout << myNums[i] << "\n";
+	}
+}
+```
+Function overloading involves multiple functions that the same name with different parameters. Overloaded functions such as sum could be overloaded for a lot of types. Typically, the functions have the same body, but they don't have to.
+```
+#include <iostream>
+
+int sum(int x, int y);
+float sum(float x, float y);
+double sum(double x, double y);
+
+int main()
+{
+    int int1 = 3;
+    int int2 = 2;
+    std::cout << int1 << " + " << int2 << " = " << sum(int1, int2) << "\n";
+    float float1 = 3.14;
+    float float2 = 2.97;
+    std::cout << float1 << " + " << float2 << " = " << sum(float1, float2);
+    std::cout << "\n";
+    double double1 = 3.78954245335;
+    double double2 = 5.12555488632;
+    std::cout << double1 << " + " << double2 << " = " << sum(double1, double2);
+    return 0;
+}
+
+int sum(int x, int y) {
+	return x + y;
+}
+float sum(float x, float y) {
+	return x + y;
+}
+double sum(double x, double y) {
+	return x + y;
+}
+```
+### recursive functions
+Recursive functions are useful for tasks such as sorting elements or factorials. They are essentially functions that call themselves:
+```
+#include <iostream>
+
+int sum(int k);
+
+int main()
+{
+    int result = sum(5);
+    std::cout << result;
+    return 0;
+}
+
+//when called, adds k to the sum of all numbers smaller than k, returns result
+int sum(int k) {
+	if (k > 0) {
+		return k + sum(k - 1);
+	}
+	else {
+		return 0;
+	}
+}
+```
+### efficiency considerations
+Calling a function with parameters taken by value causes copies of the values to be made. this is relatively inexpensive for fundamental types such as int, but if the parameter is of a large compound type, it may result on certain overhead. for example, consider:
+```
+string concatenate(string a, string b) {
+	return a + b;
+}
+```
+This function takes two strings (by value) and returns the result of concatenating them. by passing the arguments by value, the function forces a and b to be copies of the arguments passed to the function when it is called. and if these are long strings, it may mean copying large quantities of data just for the function called. This copy can be avoided if both parameters are references:
+```
+string eConcatenate(string& a, string& b) {
+	return a + b;
+}
+```
+Arguments by reference do not require a copy, and is more efficient. However, functions with reference parameters are generally perceived as functions that modify the arguments passed. The solution is for the function to guarantee that its reference parameters are not going to be modified by this function, by qualifying them as constant.
+```
+string iConcatenate(const string& a, const string& b) {
+	return a + b;
+}
+```
+In some cases, const references may be less efficient! Specifically good for larger parameter types.
+## templates
+C++ has the ability to define functions with generic types, known as function templates. defining a function template follows the same syntax as a regular function, except that it is preceded by the template keyword and a series of template parameters enclosed in <> :
+```
+#include <iostream>
+
+template <class T>
+T sum(T a, T b) {
+	T result; //T is also used to declare a local variable of that generic type
+	result = a + b;
+	return result;
+}
+
+int main()
+{
+    int i = 5, j = 6, k;
+    double f = 2.0, g = 0.5, h;
+    k = sum<int>(i, j);
+    h = sum<double>(f, g);
+    std::cout << k << "\n" << h << "\n";
+    //since result in the original function is also defined with generic type T
+    //the compiler is capable of deducing the data type
+    k = sum(i, j);
+    h = sum(f, g);
+    std::cout << k << "\n" << h << "\n";
+    return 0;
+}
+```
+## classes, objects, and constructors
+The basic structure of a class is demonstrated here:
+```
+#include <iostream>
+
+class MyClass { //the class
+public: //access specifier, public means accessible outside the class
+	void myMethod() { //method/function defined in class
+		std::cout << "Hello World!\n";
+	}
+	int myNum; //attribute (int variable)
+	std::string myString; //attribute (string variable)
+};
+
+int main()
+{
+    MyClass myObj; //create an object of MyClass
+    //access attributes and set values
+    myObj.myNum = 10;
+    myObj.myString = "some text";
+    std::cout << myObj.myNum << "\n" << myObj.myString << "\n"; //print values
+    myObj.myMethod();
+    return 0;
+}
+```
+Constructors are special methods that are automatically called when the class object is created:
+```
+#include <iostream>
+
+class MyClass {
+public:
+	MyClass() { //constructor
+		std::cout << "Hello World! (again)\n";
+	} //constructor has the same name as the class, has no return value
+};
+
+int main()
+{
+    MyClass myObj; //calls the constructor
+    return 0;
+}
+```
+Constructors can also take parameters:
+```
+#include <iostream>
+
+class Car {
+public:
+	std::string brand;
+	std::string model;
+	int year;
+	Car(std::string x, std::string y, int z){ 
+		brand = x;
+		model = y;
+		year = z;
+	}
+};
+
+int main()
+{
+    Car car1("Chevrolet", "Corvette", 2022);
+	std::cout << car1.brand << " " << car1.model << " " << car1.year << "\n";
+    return 0;
+}
+```
+Constructors can also be defined outside of the class:
+```
+#include <iostream>
+
+class Car {
+public:
+	std::string brand;
+	std::string model;
+	int year;
+	Car(std::string x, std::string y, int z); //must be defined
+};
+
+Car::Car(std::string x, std::string y, int z) {
+	brand = x;
+	model = y;
+	year = z;
+}
+
+int main()
+{
+    Car car1("Chevrolet", "Corvette", 2022);
+	std::cout << car1.brand << " " << car1.model << " " << car1.year << "\n";
+    return 0;
+}
+```
+## encapsulation, inheritance, and polymorphism
+Encapsulation makes sure that sensitive data is hidden from users. This typically necessitates functions to access that data:
+```
+#include <iostream>
+
+class Employee {
+private:
+	int salary;
+public:
+	//getters and setters needed to access private variables
+	void setSalary(int s) { //setter
+		salary = s;
+	}
+	int getSalary() {
+		return salary;
+	}
+};
+
+int main()
+{
+    Employee e1;
+	e1.setSalary(50000);
+	std::cout << e1.getSalary() << '\n';
+    return 0;
+}
+```
+Inheritance is useful for code reusablity, like attributes and methods.
+```
+#include <iostream>
+
+class MyClass {
+public:
+	void myFunction() {
+		std::cout << "Some content in parent class. \n";
+	}
+};
+//derived class (child)
+class MyChild : public MyClass {};
+//derived class (grandchild)
+class MyGrandChild : public MyChild {};
+
+int main()
+{
+    MyGrandChild myObj;
+    myObj.myFunction();
+    return 0;
+}
+```
+Classes can also be derived from more than one base class:
+```
+#include <iostream>
+
+class MyClass {
+public:
+	void myFunction() {
+		std::cout << "Some content in parent class. \n";
+	}
+};
+
+class MyOtherClass {
+public:
+	void myOtherFunction() {
+		std::cout << "Some content in another class. \n";
+	}
+};
+
+//derived class
+class MyChildClass : public MyClass, public MyOtherClass {};
+
+int main()
+{
+    MyChildClass myObj2;
+    myObj2.myFunction();
+    myObj2.myOtherFunction();
+    return 0;
+}
+```
+The access specifier protected allows access in inherited class:
+```
+#include <iostream>
+
+class ProtectedEmployee {
+protected:
+	int salary;
+};
+//derived class
+class Programmer : public ProtectedEmployee {
+public:
+	int bonus;
+	void setSalary(int s) {
+		salary = s;
+	}
+	int getSalary() {
+		return salary;
+	}
+};
+
+int main()
+{
+    Programmer myEmp;
+    myEmp.setSalary(70000);
+    myEmp.bonus = 15000;
+    std::cout << "Salary: " << myEmp.getSalary() << "\n";
+    std::cout << "Bonus: " << myEmp.bonus << "\n";
+    return 0;
+}
+```
+Polymorphism occurs when many classes are related by inheritance:
+```
+#include <iostream>
+
+class Animal {
+public:
+	void animalSound() {
+		std::cout << "The animal makes a sound \n";
+	}
+};
+//derived class
+class Pig : public Animal {
+public:
+	void animalSound() { //overrides parent class method
+		std::cout << "The pig says: oink oink \n";
+	}
+};
+class Dog : public Animal {
+public:
+	void animalSound() { //overrides parent class method
+		std::cout << "The dog says: woof woof \n";
+	}
+};
+
+int main()
+{
+    Animal myAnimal;
+    Pig myPig;
+    Dog myDog;
+    
+    myAnimal.animalSound();
+    myPig.animalSound();
+    myDog.animalSound();
+    return 0;
+}
+```
+## files
+Working with files directly requires the iostream and fstream libraries. There are three classes in the fstream library:
+- ofstream - creates and writes to files
+- ifstream - reads from files
+- fstream - a combination of ofstream and ifstream: creates, reads, and writes to files
+
+To create and open a text file:
+```
+#include <iostream>
+#include <fstream>
+
+int main()
+{
+    std::ofstream MyFile("filename.txt");
+	//write to the file
+	MyFile << "Hello World!"; // << insertion operator used to write to file
+	MyFile.close(); //closing the file is good practice and can clean up mem space
+	return 0;
+}
+```
+To read a file, use either ifstream or fstream and the name of the file:
+```
+#include <iostream>
+#include <fstream>
+
+int main()
+{
+    //create a text string, used to output to the text file
+	std::string myText;
+	//read from text file
+	std::fstream MyReadFile("filename.txt");
+	//use a whlie loop together with the getline() function to read line by line and print contents
+	while (getline(MyReadFile, myText)) {
+		std::cout << myText << '\n'; //output the text from the file
+	}
+	MyReadFile.close(); //close the file
+	return 0;
+}
+```
+To read in information from a file and convert it to a string, a loop can be used:
+```
+#include <iostream>
+#include <fstream>
+
+int main()
+{
+    std::string myText;
+	//read from text file
+	std::fstream MyReadFile("filename.txt");
+	//use a whlie loop together with the getline() function to read 
+	//line by line and print contents
+	while (getline(MyReadFile, myText)) {
+		std::cout << myText << "\n"; //output the text from the file
+	}
+	MyReadFile.close(); //close the file
+}
+```
+## exception handling
+Exception handling in c++ consists of try, throw, and catch.
+- Try defines code to be tested for errors while being executed.
+- Throw keyword throws an exception when a problem is found, allowing custom errors
+- Catch statement allows code to be executed if an error occurs.
+
+```
+#include <iostream>
+
+int main()
+{
+    try {
+		int age = 15;
+		//TEST int age = 19;
+		if (age >= 18) { //block of code to try
+			std::cout << "Access granted - you are old enough.\n";
+		}
+		else {
+			throw (age); //throw an exception when a problem arises
+		}
+	}
+	catch (int myNum) {
+		std::cout << "Access denied - You must be at least 18 years old. \n";
+		std::cout << "Age is: " << myNum << "\n";
+	}   
 }
 ```
