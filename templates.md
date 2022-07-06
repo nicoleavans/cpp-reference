@@ -39,6 +39,7 @@ In C++20, the [concepts](https://en.cppreference.com/w/cpp/concepts) header was 
 | ------------- | ------------- |
 | same_as | specifies that a type is the same as another type  |
 | convertible_to  |  specifies that a type is implicitly convertible to another type   |
+| derived_from | specifies that a type is derived from another type |
 | integral | specifies that a type is an integral type | 
 | floating_point | specifies that a type is a floating-point type | 
 | swappable | specifies that a type can be swapped | 
