@@ -56,5 +56,5 @@ In C++20, the [concepts](https://en.cppreference.com/w/cpp/concepts) header was 
 
 ## References
 
-- https://www.boost.org/doc/libs/1_79_0/more/getting_started/unix-variants.html#header-only-libraries
+- https://www.cppstories.com/2021/concepts-intro/
 - https://en.cppreference.com/w/cpp/language/parameter_pack
