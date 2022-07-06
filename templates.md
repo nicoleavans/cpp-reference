@@ -48,16 +48,31 @@ In C++20, the [concepts](https://en.cppreference.com/w/cpp/concepts) header was 
 | move_constructible |  specifies that an object of a type can be move constructed |
 | copy_constructible |  specifies that an object of a type can be copy constructed and move constructed |
 
+```
+#include <concepts>
+#include <iostream>
+
+template <typename T>
+concept Number = std::integral<T> || std::floating_point<T>;
+
+auto add(Number auto a, Number auto b) {
+  return a+b;
+}
+
+int main() {
+  std::cout << add(1, 2.5) << '\n';
+}
+```
 
 ### Sources
 
 - https://en.cppreference.com/w/cpp/language/templates
 - https://docs.microsoft.com/en-us/cpp/cpp/templates-cpp?view=msvc-170
 - https://en.cppreference.com/w/cpp/concepts
+- https://www.sandordargo.com/blog/2021/02/17/cpp-concepts-4-ways-to-use-them
 
 ## References
 
 - https://www.cppstories.com/2021/concepts-intro/
 - https://en.cppreference.com/w/cpp/language/parameter_pack
 - https://en.cppreference.com/w/cpp/language/sfinae
-- https://www.sandordargo.com/blog/2021/02/17/cpp-concepts-4-ways-to-use-them
