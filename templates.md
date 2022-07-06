@@ -33,7 +33,7 @@ It is also possible to define a template that takes an abitrary number of zero o
 
 ## Concepts
 
-In C++20, the [concepts](https://en.cppreference.com/w/cpp/concepts) header was introduced, providing definitions that can be used to perform compile-time validation of template arguments. 
+In C++20, the [concepts](https://en.cppreference.com/w/cpp/concepts) header was introduced, providing definitions that can be used to perform compile-time validation of template arguments. This has the potential to resolve SFINAE (substitution failure is not an error). 
 
 | Function  | Definition |
 | ------------- | ------------- |
@@ -59,3 +59,5 @@ In C++20, the [concepts](https://en.cppreference.com/w/cpp/concepts) header was 
 
 - https://www.cppstories.com/2021/concepts-intro/
 - https://en.cppreference.com/w/cpp/language/parameter_pack
+- https://en.cppreference.com/w/cpp/language/sfinae
+- https://www.sandordargo.com/blog/2021/02/17/cpp-concepts-4-ways-to-use-them
