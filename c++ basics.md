@@ -2,7 +2,7 @@
 
 ## inputs, outputs, and strings
 At the very simplest, we output text:
-```
+```c++
 #include <iostream>
 
 int main(){
@@ -11,7 +11,7 @@ int main(){
 }
 ```
 We can also take in text from the user:
-```
+```c++
 #include <iostream>
 
 int main(){
@@ -22,7 +22,7 @@ int main(){
 }
 ```
 This, however, doesn't allow for any spaces. For that, we need getline(). We'll also use a string to store the input:
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -34,7 +34,7 @@ int main(){
 }
 ```
 It's good to note when using getline(), the extration operator >> leaves \n hanging, and getline() reads input until a newline or \n is found. This can leave a getline() non-functional. To resolve this, std::cin.ignore() can be used:
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -52,7 +52,7 @@ int main(){
 }
 ```
 There are times it may be useful to convert a string to a numerical value and vice/versa. The stringstream functionality allows for this:
-```
+```c++
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -74,7 +74,7 @@ int main(){
 ```
 ## booleans, if statements, and loops
 Booleans are a binary data type, usually regarded as either TRUE (returns 1) or FALSE (returns 0). These are useful, among other applications, for if statements.
-```
+```c++
 #include <iostream>
 
 int main(){
@@ -89,7 +89,7 @@ int main(){
 }
 ```
 If statements can be more complicated, with multiple conditions before an else (else if), or no else at all. Consider:
-```
+```c++
 #include <iostream>
 
 int main(){
@@ -107,7 +107,7 @@ int main(){
 }
 ```
 You can also use a ternary operator for simple if/else statements:
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -120,7 +120,7 @@ int main(){
 }
 ```
 Switches are a good option if a particular int is meaningful:
-```
+```c++
 #include <iostream>
 
 int main(){
@@ -156,7 +156,7 @@ int main(){
 }
 ```
 A while loop is useful for repeating an action while a specific condition remains true:
-```
+```c++
     #include <iostream>
 
     int main(){
@@ -170,7 +170,7 @@ A while loop is useful for repeating an action while a specific condition remain
 }
 ```
 A do/while loop is different because the do condition will be executed at least once:
-```
+```c++
 #include <iostream>
 
 int main(){
@@ -183,7 +183,7 @@ int main(){
 }
 ```
 For loops are incredibly useful, one use case is when you want to loop a set number of times.
-```
+```c++
 #include <iostream>
 
 int main(){
@@ -201,7 +201,7 @@ int main(){
 }
 ```
 Break statements are helpful for stopping a loop, but the continue condition also has its uses. It breaks one iteration of the loop. Let's demonstrate this with a while loop:
-```
+```c++
 #include <iostream>
 
 int main(){
@@ -221,7 +221,7 @@ int main(){
 ```
 ## arrays
 Arrays are useful for containing objects you need to access by reference:
-```
+```c++
 #include <string>
 
 int main(){
@@ -232,7 +232,7 @@ int main(){
 }
 ```
 Looping through an array is easy with a for loop:
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -247,7 +247,7 @@ int main(){
 }
 ```
 To get the number of values in an array:
-```
+```c++
 #include <iostream>
 
 int main(){
@@ -262,7 +262,7 @@ int main(){
 }
 ```
 Multi-dimensional arrays are also possible:
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -277,7 +277,7 @@ int main(){
 }
 ```
 Another example, with a demonstration of looping through the array:
-```
+```c++
 #include <iostream>
 
 int main(){
@@ -306,7 +306,7 @@ int main(){
 }
 ```
 Multi-dimensional arrays are also useful for representing grids, like in the classic example Battleship:
-```
+```c++
 #include <iostream>
 
 int main(){
@@ -346,7 +346,7 @@ int main(){
 ```
 ## structures
 Structures group several related variables into one place. Unlike an array, it can contain different data types:
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -365,7 +365,7 @@ int main(){
 }
 ```
 Named structures can function as data types:
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -398,7 +398,7 @@ int main(){
 References and pointers give you the ability to manipulate data in the computers memory which can reduce code and improve performance, a main distinction between c++ and other languages, like java.
 
 A reference variable is a reference to an existing variable created with the & operator:
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -413,7 +413,7 @@ int main()
 }
 ```
 The & operator can also be used to get the memory address of a variable. A pointer is a variable that stores the memory address as its value:
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -429,7 +429,7 @@ int main()
 }
 ```
 Pointers can also be used to get and change the value of the variable:
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -447,7 +447,7 @@ int main()
 ```
 ## function basics
 Basic functions follow take this format:
-```
+```c++
 #include <iostream>
 
 void myFunction() { //declaration
@@ -461,7 +461,7 @@ int main()
 }
 ```
 Functions also frequently function by taking parameters. A function can take one or more parameters, and those parameters may also have a default value. Frequently, function declarations are made above the main class, with the definitions following after. Here are a few examples:
-```
+```c++
 #include <iostream>
 
 void myCountry(std::string country = "Sweden"); //default param is part of declaration
@@ -507,7 +507,7 @@ void arrayFunction(int myNums[5]) {
 }
 ```
 Function overloading involves multiple functions that the same name with different parameters. Overloaded functions such as sum could be overloaded for a lot of types. Typically, the functions have the same body, but they don't have to.
-```
+```c++
 #include <iostream>
 
 int sum(int x, int y);
@@ -541,7 +541,7 @@ double sum(double x, double y) {
 ```
 ### recursive functions
 Recursive functions are useful for tasks such as sorting elements or factorials. They are essentially functions that call themselves:
-```
+```c++
 #include <iostream>
 
 int sum(int k);
@@ -565,19 +565,19 @@ int sum(int k) {
 ```
 ### efficiency considerations
 Calling a function with parameters taken by value causes copies of the values to be made. this is relatively inexpensive for fundamental types such as int, but if the parameter is of a large compound type, it may result on certain overhead. for example, consider:
-```
+```c++
 string concatenate(string a, string b) {
 	return a + b;
 }
 ```
 This function takes two strings (by value) and returns the result of concatenating them. by passing the arguments by value, the function forces a and b to be copies of the arguments passed to the function when it is called. and if these are long strings, it may mean copying large quantities of data just for the function called. This copy can be avoided if both parameters are references:
-```
+```c++
 string eConcatenate(string& a, string& b) {
 	return a + b;
 }
 ```
 Arguments by reference do not require a copy, and is more efficient. However, functions with reference parameters are generally perceived as functions that modify the arguments passed. The solution is for the function to guarantee that its reference parameters are not going to be modified by this function, by qualifying them as constant.
-```
+```c++
 string iConcatenate(const string& a, const string& b) {
 	return a + b;
 }
@@ -585,7 +585,7 @@ string iConcatenate(const string& a, const string& b) {
 In some cases, const references may be less efficient! Specifically good for larger parameter types.
 ## templates
 C++ has the ability to define functions with generic types, known as function templates. defining a function template follows the same syntax as a regular function, except that it is preceded by the template keyword and a series of template parameters enclosed in <> :
-```
+```c++
 #include <iostream>
 
 template <class T>
@@ -612,7 +612,7 @@ int main()
 ```
 ## classes, objects, and constructors
 The basic structure of a class is demonstrated here:
-```
+```c++
 #include <iostream>
 
 class MyClass { //the class
@@ -636,7 +636,7 @@ int main()
 }
 ```
 Constructors are special methods that are automatically called when the class object is created:
-```
+```c++
 #include <iostream>
 
 class MyClass {
@@ -653,7 +653,7 @@ int main()
 }
 ```
 Constructors can also take parameters:
-```
+```c++
 #include <iostream>
 
 class Car {
@@ -676,7 +676,7 @@ int main()
 }
 ```
 Constructors can also be defined outside of the class:
-```
+```c++
 #include <iostream>
 
 class Car {
@@ -702,7 +702,7 @@ int main()
 ```
 ## encapsulation, inheritance, and polymorphism
 Encapsulation makes sure that sensitive data is hidden from users. This typically necessitates functions to access that data:
-```
+```c++
 #include <iostream>
 
 class Employee {
@@ -727,7 +727,7 @@ int main()
 }
 ```
 Inheritance is useful for code reusablity, like attributes and methods.
-```
+```c++
 #include <iostream>
 
 class MyClass {
@@ -749,7 +749,7 @@ int main()
 }
 ```
 Classes can also be derived from more than one base class:
-```
+```c++
 #include <iostream>
 
 class MyClass {
@@ -778,7 +778,7 @@ int main()
 }
 ```
 The access specifier protected allows access in inherited class:
-```
+```c++
 #include <iostream>
 
 class ProtectedEmployee {
@@ -808,7 +808,7 @@ int main()
 }
 ```
 Polymorphism occurs when many classes are related by inheritance:
-```
+```c++
 #include <iostream>
 
 class Animal {
@@ -850,7 +850,7 @@ Working with files directly requires the iostream and fstream libraries. There a
 - fstream - a combination of ofstream and ifstream: creates, reads, and writes to files
 
 To create and open a text file:
-```
+```c++
 #include <iostream>
 #include <fstream>
 
@@ -864,7 +864,7 @@ int main()
 }
 ```
 To read a file, use either ifstream or fstream and the name of the file:
-```
+```c++
 #include <iostream>
 #include <fstream>
 
@@ -883,7 +883,7 @@ int main()
 }
 ```
 To read in information from a file and convert it to a string, a loop can be used:
-```
+```c++
 #include <iostream>
 #include <fstream>
 
@@ -906,7 +906,7 @@ Exception handling in c++ consists of try, throw, and catch.
 - Throw keyword throws an exception when a problem is found, allowing custom errors
 - Catch statement allows code to be executed if an error occurs.
 
-```
+```c++
 #include <iostream>
 
 int main()
