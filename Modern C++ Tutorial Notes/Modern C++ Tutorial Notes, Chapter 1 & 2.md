@@ -1,9 +1,9 @@
-# Modern C++ Tutorial Notes
+## Modern C++ Tutorial Notes
 Covering Chapters 1 and 2 of [The Modern C++ Tutorial](https://github.com/changkun/modern-cpp-tutorial) by Ou Changkun
 
-## Constants
+# Constants
 
-### `constexpr`
+## `constexpr`
 C++11 provides 
 `constexpr`
 to let the user explicitly declare that the function or object contructor will become a constant expression at compile time. The keyword explicitly tells the compiler to verify the function or object should be a compile-time constant expression. An example featuring recursion:
@@ -60,8 +60,8 @@ int main() {
 }
 ```
 
-## Variables and Initialization
-### Initializer List
+# Variables and Initialization
+## Initializer List
 Take a class Foo with two initialzation values - two integers:
 
 ```c++
@@ -120,7 +120,7 @@ int main() {
 
 The initialization list can also be used as a formal parameter of a normal function.
 
-### Structured Binding and Tuples
+## Structured Binding and Tuples
 Structured bindings provide functionality similar to the multiple return values provided in other languages. C++11 added a 
 `std::tuple`
 container for constructing a tuple, and C++17 completed its functionality. Example:
@@ -140,14 +140,14 @@ int main() {
 }
 ```
 
-## Type Inference
+# Type Inference
 C++11 introduces the keyworsd
 `auto`
 and 
 `decltype`
 to implement type derivation, letting the compiler deduce the type of the variable.
 
-### `auto`
+## `auto`
 Some common usages of auto:
 
 ```c++
@@ -180,7 +180,7 @@ int main() {
 }
 ```
 
-### `decltype`
+## `decltype`
 The 
 `decltype`
 keyword yields the type of a specified expression. Together with the
@@ -206,7 +206,7 @@ int main() {
 }
 ```
 
-### `decltype(auto)`
+## `decltype(auto)`
 Mainly used to derive the return type of a forwarding function or package, which does not require us to explicitly specify the parameter expression of 
 `decltype`
 . Consider the example when we need to wrap the following two functions:
@@ -240,8 +240,8 @@ decltype(auto) look_up_a_string_2() {
 }
 ```
 
-## Control Flow
-### Range-Based `for` loop
+# Control Flow
+## Range-Based `for` loop
 C++11 introduces a range-based iterative method, and we can write loops that are as concise as Python:
 
 ```c++
@@ -262,8 +262,8 @@ int main() {
 }
 ```
 
-## Templates
-### Extern Templates
+# Templates
+## Extern Templates
 In traditional C++, templates are instantiated by the compiler only when they are used. This results in an increase in compile time due to repeated instantiations. Also, we have no way to tell the compiler not to trigger the instantiation of the template.
 
 To this end, C++11 introduces an external template that allows us to explicitly tell the compiler when to instantiate.
@@ -273,7 +273,7 @@ template class std::vector<bool>;          // force instantiation
 extern template class std::vector<double>; // should not instantiate in current file
 ```
 
-### Variadic Templates
+## Variadic Templates
 In traditional C++, both a class template and function tempate could only accept a fixed set of template parameters as specified; C++11 added a new representation, allowing any number, template parameters of any category, and no need to fix the number of parameters when defining:
 
 ```c++
@@ -282,7 +282,7 @@ template<typename... Ts> class Foo;
 
 We can pass any number of arguments, then they parameters are unpacked. So far ther is no simple way to process the parameter package but there are a few processing methods:
 
-#### Recursive Template Function
+### Recursive Template Function
 
 Recursion is the most classic approach. This method continually recursively passes template parameters to the function, thereby recursively traversing all template parameters:
 
@@ -303,7 +303,7 @@ int main() {
 }
 ```
 
-#### Initialize List Expansion
+### Initialize List Expansion
 Recursive template functions are standard practice, but the obvious drawback is that you must define a function that terminates recursion. An example:
 
 ```c++
@@ -326,7 +326,7 @@ to
 `void`
 .
 
-### Fold Expression
+## Fold Expression
 The feature of the variable length parameter can be brought into the expression:
 
 ```c++
@@ -340,8 +340,8 @@ int main() {
 }
 ```
 
-## Object-Oriented
-### Delegate Constructor
+# Object-Oriented
+## Delegate Constructor
 C++11 introduces the concept of a delegate construct, which allows the constructor to call another constructor in a constructor of the same class, simplifying the code:
 
 ```c++
@@ -365,7 +365,7 @@ int main() {
 }
 ```
 
-## Inheritance Constructor
+# Inheritance Constructor
 In traditional C++, constructors need to pass arguments one by one if they need inheritance, which leads to inefficiency. C++11 introduces the concept of inheritance constructors using the keyword
 `using`
 :
@@ -394,7 +394,7 @@ int main() {
 }
 ```
 
-## Explicit Virtual Function Override
+# Explicit Virtual Function Override
 Traditional C++ is prone to accidentally overloading virtual functions:
 
 ```c++
@@ -415,7 +415,7 @@ and
 `final`
 to prevent this.
 
-### `override`
+## `override`
 When overriding a virtual function, introducing the
 `override`
 keyword will explicitly tell the compiler to overload, and the compiler will check if the base function has such a virtual function, otherwise it will not compile. 
@@ -430,7 +430,7 @@ struct SubClass: Base {
 };
 ```
 
-### `final`
+## `final`
 `final`
 is to prevent the class from being inherited further:
 
@@ -449,7 +449,7 @@ struct SubClass3: Base {
 };
 ```
 
-### Explicitly Delete Default Function
+## Explicitly Delete Default Function
 In traditional C++, if the programmer does not provide it, the compiler will default to generating default constructors, copy constructs, assignment operators, and destructors for the object. C++ also defines operators such as
 `new`
 and 
@@ -473,7 +473,7 @@ class Magic {
 }
 ```
 
-## Strongly Typed Enumerations
+# Strongly Typed Enumerations
 In traditional C++, enumerated types are not type-safe, and enumerated types are treated as integers, which allows two completely different enumerated types to be directly compared.
 
 C++11 introduces an enumeration class with the syntax
