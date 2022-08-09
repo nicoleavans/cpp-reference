@@ -69,3 +69,39 @@ std::vector<int> twoSum(std::vector<int>& nums, int target) {
     return result;
 }
 ```
+
+## Strings and Chars
+### Valid Hex Code
+Write a function that determines if a string is a valid hex code. 
+* Must have # as first character
+* Exactly 6 characters after, within A-F (upper and lower case) and 0-9
+
+'''c++
+#include <iostream>
+#include <array>
+
+std::array<char, 21> arr = {'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f',
+'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+bool isValidHex(std::string hex){
+    // catches any length errors
+    if(hex.length() != 7) {
+        return false;
+    }
+    // catches first character not being hash
+    if(hex[0] != '#'){
+        return false;
+    }
+    for(int i = 1; i < hex.length(); i++){
+        for(int j = 0; j < arr.size(); j++){
+            if(hex[i] == arr[j]){
+                break;
+            }
+            else if(j == 20){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+'''
