@@ -92,11 +92,15 @@ bool isValidHex(std::string hex){
     if(hex[0] != '#'){
         return false;
     }
+    // first for loop iterates through input string
     for(int i = 1; i < hex.length(); i++){
+        // second for loop iterates through valid input array
         for(int j = 0; j < arr.size(); j++){
+            // if match, continue to next input string character
             if(hex[i] == arr[j]){
                 break;
             }
+            // if no match by end of valid input array
             else if(j == 20){
                 return false;
             }
