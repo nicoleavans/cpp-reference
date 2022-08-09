@@ -109,3 +109,97 @@ bool isValidHex(std::string hex){
     return true;
 } 
 ```
+
+## Vectors
+### Uno Hand 
+Write a function that takes:
+* player's current hand of cards
+* current face card
+A player can use a card if the color or number match. Function should return true if player can use one of their cards, else false. If a player's hand is empty, it should return false.
+
+```c++
+#include <iostream>
+#include <vector>
+
+bool canPlay(std::vector<std::string> hand,std::string face){
+    std::string curr;
+    // if there are no cards in hand
+    if(hand.size() == 0){
+        return false;
+    }
+    // loops through hand vector
+    for(int i = 0; i < hand.size(); i++){
+        // set string to current string in vector
+        curr = hand[i];
+        // if catches color matches, as the first letter would match
+        //TODO catch bad input
+        if(face[0] == curr[0]){
+            return true;
+        }
+        // else if catches number matches
+        else if(face.back() == curr.back()){
+            return true;
+        }
+    }
+    // if there are no matches, returns false
+    return false;
+}
+```
+
+<details><summary>Example with tests:</summary>
+<p>
+
+```c++
+   #include <iostream>
+#include <vector>
+
+bool canPlay(std::vector<std::string> hand,std::string face){
+    std::string curr;
+    // if there are no cards in hand
+    if(hand.size() == 0){
+        return false;
+    }
+    // loops through hand vector
+    for(int i = 0; i < hand.size(); i++){
+        // set string to current string in vector
+        curr = hand[i];
+        // if catches color matches, as the first letter would match
+        //TODO catch bad input
+        if(face[0] == curr[0]){
+            return true;
+        }
+        // else if catches number matches
+        else if(face.back() == curr.back()){
+            return true;
+        }
+    }
+    // if there are no matches, returns false
+    return false;
+}
+
+void print(bool b){
+    if(b == true){
+        std::cout << "true\n\n";
+    }
+    else{
+        std::cout << "false\n\n";
+    }
+}
+
+int main(){
+    std::vector<std::string> s = {"yellow 3", "yellow 5", "red 8"};
+    print(canPlay(s, "red 2")); // true
+    std::vector<std::string> t = {"yellow 3", "yellow 5", "red 8"};
+    print(canPlay(t, "blue 5")); // true
+    std::vector<std::string> u = {"yellow 3", "blue 5", "red 8", "red 9"};
+    print(canPlay(u, "green 4")); // false
+    std::vector<std::string> v = {"yellow 3", "red 8"};
+    print(canPlay(v, "green 2")); // false
+    std::vector<std::string> w = {};
+    print(canPlay(w, "green 2")); // false
+    return 0;
+}
+```
+
+</p>
+</details>
