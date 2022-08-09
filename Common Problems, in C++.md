@@ -115,6 +115,7 @@ bool isValidHex(std::string hex){
 Write a function that takes:
 * player's current hand of cards
 * current face card
+
 A player can use a card if the color or number match. Function should return true if player can use one of their cards, else false. If a player's hand is empty, it should return false.
 
 ```c++
