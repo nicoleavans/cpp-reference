@@ -76,7 +76,7 @@ Write a function that determines if a string is a valid hex code.
 * Must have # as first character
 * Exactly 6 characters after, within A-F (upper and lower case) and 0-9
 
-'''c++
+```c++
 #include <iostream>
 #include <array>
 
@@ -103,5 +103,5 @@ bool isValidHex(std::string hex){
         }
     }
     return true;
-}
-'''
+} 
+```
