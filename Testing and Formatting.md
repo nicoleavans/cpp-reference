@@ -3,7 +3,7 @@
 ### Boolean
 
 ```c++
-void printBool(bool b){
+void print(bool b){
     if(b == true){
         std::cout << "true\n";
     }
