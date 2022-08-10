@@ -3,6 +3,9 @@
 ### Roman Numerals to Integers
 To convert Roman numerals (VI, MCM, etc.) to integers, we can use a map that stores characters and integers:
 
+<details>
+    <summary>Solution:</summary>
+    
 ```c++
 #include <iostream>
 #include <map>
@@ -41,6 +44,7 @@ int roman_to_int(std::string &s){
     return r;
 }
 ```
+</details>
 
 ### Two Sum
 Given a vector of integers 
@@ -49,6 +53,9 @@ Given a vector of integers
 `target` 
 is determined that is the sum of two separate int values in the vector. Return a vector with the indices of the two numbers that add up to target. 
 
+<details>
+    <summary>Solution:</summary>
+    
 ```c++
 #include <iostream>
 #include <vector>
@@ -69,6 +76,7 @@ std::vector<int> twoSum(std::vector<int>& nums, int target) {
     return result;
 }
 ```
+</details>
 
 ## Strings and Chars
 ### Valid Hex Code
@@ -76,6 +84,9 @@ Write a function that determines if a string is a valid hex code.
 * Must have # as first character
 * Exactly 6 characters after, within A-F (upper and lower case) and 0-9
 
+<details>
+    <summary>Solution:</summary>
+    
 ```c++
 #include <iostream>
 #include <array>
@@ -109,6 +120,8 @@ bool isValidHex(std::string hex){
     return true;
 } 
 ```
+    
+</details>
 
 ## Vectors
 ### Uno Hand 
@@ -118,6 +131,9 @@ Write a function that takes:
 
 A player can use a card if the color or number match. Function should return true if player can use one of their cards, else false. If a player's hand is empty, it should return false.
 
+<details>
+    <summary>Solution:</summary>
+    
 ```c++
 #include <iostream>
 #include <vector>
@@ -146,6 +162,7 @@ bool canPlay(std::vector<std::string> hand,std::string face){
     return false;
 }
 ```
+</details>
 
 <details><summary>Example with tests:</summary>
 <p>
