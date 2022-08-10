@@ -1,7 +1,7 @@
 # Common Problems, in C++
 ## Numbers and Math
 ### Roman Numerals to Integers
-To convert Roman numerals (VI, MCM, etc.) to integers, we can use a map that stores characters and integers:
+Convert Roman numerals (VI, MCM, etc.) to integers:
 
 <details>
     <summary>Solution:</summary>
