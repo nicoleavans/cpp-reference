@@ -79,6 +79,33 @@ std::vector<int> twoSum(std::vector<int>& nums, int target) {
 </details>
 
 ## Strings and Chars
+### Needle in a Haystack
+Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. If needle is an empty string, return 0.
+
+<details>
+    <summary>Solution:</summary>
+
+```c++
+int strStr(std::string haystack, std::string needle) {
+    if(needle.empty() == true){ //if needle is an empty string
+        return 0;
+    }
+    std::size_t found = haystack.find(needle);
+    if(found!=std::string::npos){
+        return found;
+    }
+    else{
+        return -1;
+    }
+}
+```
+
+Note:
+
+The find function of `std::string` returns `std::string::npos` if no matches are found. `std::size_t` is an unsigned integral type that can identify the index where there is a match.  
+
+</details>
+
 ### Valid Hex Code
 Write a function that determines if a string is a valid hex code. 
 * Must have # as first character
