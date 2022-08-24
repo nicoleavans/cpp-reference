@@ -1,5 +1,45 @@
 # Common Problems, in C++
 ## Numbers and Math
+### Binary Add
+Add binary values contained as strings and output as a string:
+<details>
+    <summary>Solution:</summary>
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+
+std::string addBinary(std::string a, std::string b) {
+    //contains # of characters in each string
+    int asize = a.size() - 1, bsize = b.size() - 1;
+    std::string result;
+    int carry = 0;
+    //while there are still numbers left to process in each string
+    //or if there are any carried values to deal with
+    while (asize >= 0 || bsize >= 0 || carry > 0){
+        if (asize >= 0) {
+            carry += a[asize] - '0';
+            asize -= 1;
+        }
+        if (bsize >= 0) {
+            carry += b[bsize] - '0';
+            bsize -= 1;
+        }
+        result += (carry % 2) + '0';
+        carry /= 2;
+    }
+    //reverse for final result
+    reverse(result.begin(), result.end());
+    return result;
+}
+
+int main(){
+    std::cout << addBinary("01", "10") << '\n';
+    std::cout << addBinary("1", "11") << '\n';
+    std::cout << addBinary("1010", "1011") << '\n';
+    return 0;
+}
+</details>
+
 ### Roman Numerals to Integers
 Convert Roman numerals (VI, MCM, etc.) to integers:
 
