@@ -4,6 +4,8 @@
 Add binary values contained as strings and output as a string:
 <details>
     <summary>Solution:</summary>
+    
+```c++
 #include <iostream>
 #include <cstring>
 #include <algorithm>
@@ -38,6 +40,8 @@ int main(){
     std::cout << addBinary("1010", "1011") << '\n';
     return 0;
 }
+```
+    
 </details>
 
 ### Roman Numerals to Integers
